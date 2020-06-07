@@ -28,10 +28,12 @@ namespace CleanArchitecture.WebUI
                     if (context.Database.IsSqlServer())
                     {
                         context.Database.Migrate();
-                    }                   
+                    }
 
+                    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
                     var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
 
+                    await ApplicationDbContextSeed.SeedDefaultRoleAsync(roleManager);
                     await ApplicationDbContextSeed.SeedDefaultUserAsync(userManager);
                     await ApplicationDbContextSeed.SeedSampleDataAsync(context);
                 }

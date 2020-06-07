@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace CleanArchitecture.Application.TodoLists.Queries.GetTodos
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class GetTodosQuery : IRequest<TodosVm>
     {
     }
